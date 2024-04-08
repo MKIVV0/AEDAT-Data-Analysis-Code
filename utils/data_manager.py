@@ -58,33 +58,22 @@ def organize_data(input_file: str, points_per_file: int, output_folder: str) -> 
         print(f"Error: Failed to create output folder '{output_folder}': {e}")
 
 
-def assemble_data_matrix(input_folder: str, num_files: int, num_data_points_per_file: int):
+def assemble_data_matrix(input_folder: str, num_data_points_per_file: int):
     try:
-        # Initialize the data matrix with zeros
-        data_matrix = np.zeros((num_files, num_data_points_per_file))
-
         # Get a list of all files in the input folder
         files = os.listdir(input_folder)
 
-        # Sort files to ensure consistent ordering
-        files.sort()
+        # Initialize the data matrix with zeros
+        data_matrix = np.zeros((len(files), num_data_points_per_file))
 
         # Fill the data matrix with data from each file
         for i, file in enumerate(files):
             file_path = os.path.join(input_folder, file)
             data = np.loadtxt(file_path)
-            data_matrix[i, :] = data[:num_data_points_per_file]  # Extract first num_data_points_per_file data points
+            # Extract first num_data_points_per_file data points
+            data_matrix[i, :] = data
 
         return data_matrix
-
-    except FileNotFoundError:
-        print(f"Error: Input folder '{input_folder}' not found.")
-        return None
-
-    except FileNotFoundError:
-        print(f"Error: Input folder '{input_folder}' not found.")
-        return None
-
 
     except FileNotFoundError:
         print(f"Error: Input folder '{input_folder}' not found.")

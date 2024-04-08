@@ -18,7 +18,7 @@ if __name__ == "__main__":
         f = os.path.join("data", "24-04-04-organized_data", f_name)
         dm.plot_file(f, f"waveform_{i}")
     '''
-    p = os.path.join("data", "24-04-04-dataset")
-    matrix: np.ndarray = dm.assemble_data_matrix(p, 1165, 1030)
+    p = os.path.join("data", "24-04-04-organized_data")
+    matrix: np.ndarray = dm.assemble_data_matrix(p, 1030)
     print(matrix)
-    print(matrix.shape)
+    print(np.shape(matrix))
